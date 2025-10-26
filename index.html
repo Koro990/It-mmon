@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IT MOHA - محمد خالد عبدالرحمن</title>
+    <meta name="description" content="موقع IT MOHA الشخصي - متخصص في الأمن السيبراني، الذكاء الاصطناعي، وتطوير مواقع الويب. خريج تقنية المعلومات مع خبرة في تقديم حلول تقنية متقدمة." />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables - تم أخذها من ملفك الأصلي */
+        :root {
+            --background: 210 4% 98%;
+            --foreground: 210 6% 12%;
+            --primary: 198 100% 50%;
+            --primary-foreground: 210 10% 98%;
+            --muted: 210 12% 90%;
+            --muted-foreground: 210 6% 38%;
+            --border: 210 5% 88%;
+            --card: 210 4% 96%;
+            --card-foreground: 210 6% 14%;
+        }
+
+        .dark {
+            --background: 0 0% 7%;
+            --foreground: 0 0% 93%;
+            --primary: 198 100% 50%;
+            --primary-foreground: 0 0% 98%;
+            --muted: 0 0% 18%;
+            --muted-foreground: 0 0% 68%;
+            --border: 0 0% 18%;
+            --card: 0 0% 12%;
+            --card-foreground: 0 0% 93%;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border-color: hsl(var(--border));
+        }
+
+        body {
+            font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            inset: 0;
+            background: hsl(var(--background));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loading-spinner {
+            width: 4rem;
+            height: 4rem;
+            border: 4px solid hsl(var(--primary));
+            border-top: 4px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, hsl(var(--primary)), #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: hsl(var(--muted-foreground));
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .skill-card {
+            background: hsl(var(--card));
+            color: hsl(var(--card-foreground));
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid hsl(var(--border));
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .skill-card p {
+            color: hsl(var(--muted-foreground));
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: hsl(var(--background));
+            border-bottom: 1px solid hsl(var(--border));
+            padding: 1rem 2rem;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: hsl(var(--primary));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: hsl(var(--foreground));
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: hsl(var(--primary));
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: hsl(var(--card));
+            padding: 4rem 2rem;
+            border-radius: 1rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: hsl(var(--card-foreground));
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: hsl(var(--muted-foreground));
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Page Transitions */
+        .page-enter {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .page-enter-active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        .page-exit {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .page-exit-active {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="dark">
+    <!-- Loading Screen -->
+    <div id="loading" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2 style="margin-top: 1rem; color: hsl(var(--foreground))">IT MOHA</h2>
+            <p style="color: hsl(var(--muted-foreground))">جاري التحميل...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <div class="nav-logo">🛡️ IT MOHA</div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">الرئيسية</a>
+                <a href="#skills" class="nav-link">المهارات</a>
+                <a href="#contact" class="nav-link">اتصل بي</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content" style="display: none; margin-top: 80px;">
+        <!-- Home Section -->
+        <section id="home" class="container">
+            <div class="hero">
+                <h1>محمد خالد عبدالرحمن</h1>
+                <p>
+                    متخصص في الأمن السيبراني، الذكاء الاصطناعي، وتطوير مواقع الويب. 
+                    خريج تقنية المعلومات مع خبرة في تقديم حلول تقنية متقدمة.
+                </p>
+            </div>
+
+            <!-- Skills Section -->
+            <section id="skills">
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon">🛡️</div>
+                        <h3>الأمن السيبراني</h3>
+                        <p>حماية الأنظمة والشبكات من الهجمات الإلكترونية وتأمين البيانات</p>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <div class="skill-icon">🤖</div>
+                        <h3>الذكاء الاصطناعي</h3>
+                        <p>تطوير حلول ذكية وتعلم الآلة وتحليل البيانات</p>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <div class="skill-icon">💻</div>
+                        <h3>تطوير الويب</h3>
+                        <p>بناء مواقع وتطبيقات ويب متقدمة وتجارب مستخدم متميزة</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact">
+                <div class="contact-section">
+                    <h2>اتصل بي</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span>📧</span>
+                            <span>البريد الإلكتروني</span>
+                        </div>
+                        <div class="contact-item">
+                            <span>📱</span>
+                            <span>وسائل التواصل</span>
+                        </div>
+                        <div class="contact-item">
+                            <span>💼</span>
+                            <span>المشاريع</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <script>
+        // Simulate loading
+        setTimeout(() => {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        }, 2000);
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Simple page transition effect
+        function navigateTo(sectionId) {
+            const mainContent = document.getElementById('main-content');
+            mainContent.style.opacity = '0';
+            
+            setTimeout(() => {
+                // Hide all sections
+                document.querySelectorAll('section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Show target section
+                const targetSection = document.getElementById(sectionId);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                }
+                
+                // Show main content with fade in
+                mainContent.style.opacity = '1';
+            }, 300);
+        }
+    </script>
+</body>
+</html>
